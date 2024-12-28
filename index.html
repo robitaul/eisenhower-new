@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eisenhower Matrix Todo App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Add Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2><i data-lucide="inbox" class="icon"></i> Inbox</h2>
+                <div class="input-section">
+                    <input type="text" id="sidebarTaskInput" placeholder="Add a new task">
+                    <button onclick="addSidebarTask()" class="add-btn">
+                        <i data-lucide="plus" class="icon-btn"></i>
+                    </button>
+                </div>
+                <ul id="sidebar-tasks" class="task-list" ondragover="handleDragOver(event)"
+                    ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                </ul>
+            </div>
+
+            <div class="sidebar-section notes-section">
+                <div class="section-header">
+                    <h2><i data-lucide="file-text" class="icon"></i> Notes</h2>
+                    <button id="clearNotes" class="clear-btn small" onclick="clearNotes()">
+                        <i data-lucide="trash-2" class="icon-sm"></i>
+                        Clear
+                    </button>
+                </div>
+                <textarea id="notes-area" placeholder="Add your notes here..."></textarea>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1>Eisenhower Matrix</h1>
+            <div class="matrix">
+                <div class="quadrant urgent-important">
+                    <h2><i data-lucide="zap" class="icon"></i> Now (within 2 hours)</h2>
+                    <ul id="urgent-important" class="task-list" ondragover="handleDragOver(event)"
+                        ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                        <div class="drag-placeholder">Drag tasks here</div>
+                    </ul>
+                </div>
+
+                <div class="quadrant not-urgent-important">
+                    <h2><i data-lucide="sun" class="icon"></i> Today (within 8 hours)</h2>
+                    <ul id="not-urgent-important" class="task-list" ondragover="handleDragOver(event)"
+                        ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                        <div class="drag-placeholder">Drag tasks here</div>
+                    </ul>
+                </div>
+
+                <div class="quadrant urgent-not-important">
+                    <h2><i data-lucide="calendar" class="icon"></i> This Week</h2>
+                    <ul id="urgent-not-important" class="task-list" ondragover="handleDragOver(event)"
+                        ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                        <div class="drag-placeholder">Drag tasks here</div>
+                    </ul>
+                </div>
+
+                <div class="quadrant not-urgent-not-important">
+                    <h2><i data-lucide="target" class="icon"></i> This Month</h2>
+                    <ul id="not-urgent-not-important" class="task-list" ondragover="handleDragOver(event)"
+                        ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                        <div class="drag-placeholder">Drag tasks here</div>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="completed-section" id="completed-container">
+                <div class="completed-header">
+                    <h2><i data-lucide="check-circle" class="icon"></i> Completed Tasks</h2>
+                    <button id="clearCompleted" class="clear-btn" onclick="clearCompletedTasks()">
+                        <i data-lucide="trash-2" class="icon-sm"></i>
+                        Clear All
+                    </button>
+                </div>
+                <ul id="completed-tasks" class="task-list completed-list"></ul>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
